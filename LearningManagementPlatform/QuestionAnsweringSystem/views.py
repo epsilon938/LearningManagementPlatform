@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from .models import Student
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # Create your views here.
 
 def index(request):
@@ -12,6 +12,14 @@ def index(request):
     '''
 
     return render(request,"register.html")
+
+def login_page(request):
+
+    ''' this function returns home page
+
+     :returns HttpResponse: Login page
+     '''
+    return render(request, "login.html")
 
 def register(request):
 
@@ -45,4 +53,29 @@ def register(request):
             raise Http404("Page not found.")
     else:
         raise Http404("{} not available".format(request.method))
+
+def login(request):
+    '''
+    This function takes login credentials as parameters and returns a response upon successfully logged in.
+    :param request: rollnumber and password
+    :return: HttpResponse upon successful authentication
+    '''
+    if request.POST:
+        data = request.POST
+        all_obj = Student.objects.all()
+        for each_obj in all_obj:
+            if str(each_obj.roll_number) == str(data['roll_number']):
+                if str(each_obj.password) == str(data['password']):
+                    return HttpResponse("You have successfully logged in")
+
+        return redirect("login_page")
+
+    else:
+        raise Http404("{} not available".format(request.method))
+
+
+
+
+
+
 
