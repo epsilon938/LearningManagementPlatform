@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <style>
+        label {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          text-align: right;
+          width: 400px;
+          line-height: 26px;
+          margin-bottom: 10px;
+        }
+
+        input {
+          height: 20px;
+          flex: 0 0 200px;
+          margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="http://localhost:8080/quiz/register/">
+        {% csrf_token %}
+        <label name="username">username
+            <input type="text" name="username"></label>
+        <label name="email">email
+            <input type="text" name="email"></label>
+        <label name="password">password
+            <input type="text" name="password"></label>
+        <label name="roll_number">roll_number
+            <input type="text" name="roll_number"></label>
+        <label name="phone_number">phone_number
+        <input type="text" name="phone_number"></label>
+        <label name="college">college
+        <input type="text" name="college"></label>
+        <label name="city">city
+        <input type="text" name="city"></label>
+        <label name="state">state
+        <input type="text" name="state"></label>
+        <label name="country">country
+        <input type="text" name="country"></label>
+        <label><input type="submit"></label>
+    </form>
+</body>
+</html>
